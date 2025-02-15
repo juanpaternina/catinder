@@ -1,41 +1,139 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { Image } from "expo-image";
+import Animated, {
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { forwardRef, useCallback, useImperativeHandle } from "react";
+import { useCatAPI } from "@/hooks/useCatAPI";
 
 type Props = {
   image: string;
   name: string;
   age: number;
+  catID: string;
   origin: string;
+  active: number;
+  index: number;
+  discardHandler?: (index: number) => void;
+  likeHandler?: (index: number) => void;
+  testID?: string;
 };
 
-export default function Card({ image, name, age, origin }: Props) {
-  return (
-    <View style={{ position: "absolute", width: "100%", height: "100%" }}>
-      <View style={styles.container}>
-        <Image
-          testID="cat-image"
-          contentFit="cover"
-          //source={{ uri: "https://picsum.photos/343/440" }}
-          source={{ uri: image }}
-          style={styles.image}
-        />
-        <View style={styles.infoContainer}>
-          <View style={styles.titleDescriptionContainer}>
-            <Text testID="cat-name" style={styles.title}>
-              {name}
-            </Text>
-            <Text testID="cat-age" style={styles.title}>
-              {age}
-            </Text>
+export type CardRef = {
+  discard: () => void;
+  like: () => void;
+};
+
+const Card = forwardRef<CardRef, Props>(
+  (
+    {
+      image,
+      name,
+      age,
+      origin,
+      active,
+      index,
+      catID,
+      discardHandler,
+      likeHandler,
+    }: Props,
+    ref
+  ) => {
+    const translateX = useSharedValue(0);
+    const { width } = useWindowDimensions();
+    const { voteCat } = useCatAPI();
+
+    const discard = useCallback(async () => {
+      translateX.value = withTiming(-width, { duration: 200 }, () => {
+        if (discardHandler) runOnJS(discardHandler)(index);
+      });
+      const r = await voteCat(catID, -1);
+      console.log(r);
+    }, [active]);
+
+    const like = useCallback(async () => {
+      translateX.value = withTiming(width, { duration: 200 }, () => {
+        if (likeHandler) runOnJS(likeHandler)(index);
+      });
+      const r = await voteCat(catID, 1);
+      console.log(r);
+    }, [active]);
+
+    const tap = Gesture.Pan()
+      .onUpdate((e) => {
+        console.log("mooving");
+        if (active === index) {
+          translateX.value = e.translationX;
+        }
+      })
+      .onEnd((e) => {
+        console.log("mooving");
+        if (active === index) {
+          if (e.translationX > 150) {
+            return runOnJS(like)();
+          }
+          if (e.translationX < -150) {
+            return runOnJS(discard)();
+          }
+          translateX.value = withSpring(0, { duration: 1400 });
+        }
+      });
+
+    const animatedStyle = useAnimatedStyle(() => {
+      return {
+        transform: [
+          {
+            translateX: translateX.value,
+          },
+        ],
+      };
+    });
+
+    useImperativeHandle(ref, () => ({
+      discard,
+      like,
+    }));
+
+    return (
+      <GestureDetector gesture={tap}>
+        <Animated.View
+          style={[
+            { position: "absolute", width: "100%", height: "100%" },
+            animatedStyle,
+          ]}
+        >
+          <View style={styles.container}>
+            <Image
+              testID="cat-image"
+              contentFit="cover"
+              source={{ uri: image }}
+              style={styles.image}
+            />
+            <View style={styles.infoContainer}>
+              <View style={styles.titleDescriptionContainer}>
+                <Text testID="cat-name" style={styles.title}>
+                  {name}
+                </Text>
+                <Text testID="cat-age" style={styles.title}>
+                  {age}
+                </Text>
+              </View>
+              <Text testID="cat-origin" style={styles.description}>
+                {origin}
+              </Text>
+            </View>
           </View>
-          <Text testID="cat-origin" style={styles.description}>
-            {origin}
-          </Text>
-        </View>
-      </View>
-    </View>
-  );
-}
+        </Animated.View>
+      </GestureDetector>
+    );
+  }
+);
+export default Card;
 
 const styles = StyleSheet.create({
   container: {

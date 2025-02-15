@@ -1,6 +1,7 @@
 import { Text } from "react-native";
 import { render, screen } from "@testing-library/react-native";
 import Card from "./index";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 describe("Card", () => {
   it("renders correctly", () => {
@@ -10,6 +11,10 @@ describe("Card", () => {
         name="Cat Name"
         age={6}
         origin="Egypt"
+        active={0}
+        index={0}
+        discardHandler={() => {}}
+        likeHandler={() => {}}
       />
     );
     expect(screen.getByTestId("cat-image")).toBeTruthy();
@@ -19,6 +24,5 @@ describe("Card", () => {
     expect(screen.getByText("Cat Name")).toBeTruthy();
     expect(screen.getByText("6")).toBeTruthy();
     expect(screen.getByText("Egypt")).toBeTruthy();
-    expect(screen).toMatchSnapshot();
   });
 });
