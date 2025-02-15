@@ -1,4 +1,4 @@
-import EmptyTab from "@/components/EmptyTab";
+import { EmptyTab } from "@/components";
 
 export default function TabTwoScreen() {
   return <EmptyTab title="02" />;

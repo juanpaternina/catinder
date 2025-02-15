@@ -2,6 +2,7 @@ import { View, StyleSheet } from "react-native";
 import { useCatAPI } from "@/hooks/useCatAPI";
 import { useEffect } from "react";
 import Colors from "@/constants/Colors";
+import { ButtonsAction } from "@/components";
 
 export default function VoteScreen() {
   const { getCatList } = useCatAPI();
@@ -17,7 +18,11 @@ export default function VoteScreen() {
     fetchCats();
   }, []);
 
-  return <View style={styles.container}></View>;
+  return (
+    <View style={styles.container}>
+      <ButtonsAction />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
