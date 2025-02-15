@@ -1,26 +1,34 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Image } from "expo-image";
 
-export default function Card() {
+type Props = {
+  image: string;
+  name: string;
+  age: number;
+  origin: string;
+};
+
+export default function Card({ image, name, age, origin }: Props) {
   return (
     <View style={styles.container}>
       <Image
         testID="cat-image"
         contentFit="cover"
-        source={{ uri: "https://picsum.photos/343/440" }}
+        //source={{ uri: "https://picsum.photos/343/440" }}
+        source={{ uri: image }}
         style={styles.image}
       />
       <View style={styles.infoContainer}>
         <View style={styles.titleDescriptionContainer}>
           <Text testID="cat-name" style={styles.title}>
-            Abyssinian
+            {name}
           </Text>
           <Text testID="cat-age" style={styles.title}>
-            4
+            {age}
           </Text>
         </View>
         <Text testID="cat-origin" style={styles.description}>
-          Description
+          {origin}
         </Text>
       </View>
     </View>

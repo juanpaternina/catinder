@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card renders correctly 1`] = `
+<View
+  style={
+    {
+      "borderRadius": 16,
+      "boxShadow": "0px 10px 16px 0px #BFBFC04D",
+      "height": 440,
+      "justifyContent": "flex-end",
+      "width": 343,
+    }
+  }
+>
+  <ViewManagerAdapter_ExpoImage
+    borderRadius={16}
+    containerViewRef={"[React.ref]"}
+    contentFit="cover"
+    contentPosition={
+      {
+        "left": "50%",
+        "top": "50%",
+      }
+    }
+    height="100%"
+    nativeViewRef={"[React.ref]"}
+    onError={[Function]}
+    onLoad={[Function]}
+    onLoadStart={[Function]}
+    onProgress={[Function]}
+    placeholder={[]}
+    position="absolute"
+    source={
+      [
+        {
+          "uri": "https://picsum.photos/343/440",
+        },
+      ]
+    }
+    style={
+      {
+        "borderRadius": 16,
+        "height": "100%",
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+    testID="cat-image"
+    transition={null}
+    width="100%"
+  />
+  <View
+    style={
+      {
+        "alignSelf": "center",
+        "backgroundColor": "#FFF",
+        "borderTopEndRadius": 16,
+        "borderTopLeftRadius": 16,
+        "height": 48,
+        "paddingHorizontal": 16,
+        "paddingTop": 8,
+        "width": 307,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": 20,
+          }
+        }
+        testID="cat-name"
+      >
+        Cat Name
+      </Text>
+      <Text
+        style={
+          {
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": 20,
+          }
+        }
+        testID="cat-age"
+      >
+        6
+      </Text>
+    </View>
+    <Text
+      style={
+        {
+          "color": "#BFBFC0",
+          "fontSize": 10,
+          "fontWeight": "bold",
+          "lineHeight": 10,
+          "marginTop": 2,
+        }
+      }
+      testID="cat-origin"
+    >
+      Egypt
+    </Text>
+  </View>
+</View>
+`;
