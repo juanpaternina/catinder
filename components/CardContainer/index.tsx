@@ -11,5 +11,7 @@ export default function CardsContainer({ children }: Props) {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 58,
+    width: 343,
+    height: 440,
   },
 });

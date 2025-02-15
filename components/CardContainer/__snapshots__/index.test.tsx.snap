@@ -4,7 +4,9 @@ exports[`CardsContainer renders correctly 1`] = `
 <View
   style={
     {
+      "height": 440,
       "marginBottom": 58,
+      "width": "100%",
     }
   }
 >

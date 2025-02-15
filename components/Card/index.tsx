@@ -10,26 +10,28 @@ type Props = {
 
 export default function Card({ image, name, age, origin }: Props) {
   return (
-    <View style={styles.container}>
-      <Image
-        testID="cat-image"
-        contentFit="cover"
-        //source={{ uri: "https://picsum.photos/343/440" }}
-        source={{ uri: image }}
-        style={styles.image}
-      />
-      <View style={styles.infoContainer}>
-        <View style={styles.titleDescriptionContainer}>
-          <Text testID="cat-name" style={styles.title}>
-            {name}
-          </Text>
-          <Text testID="cat-age" style={styles.title}>
-            {age}
+    <View style={{ position: "absolute", width: "100%", height: "100%" }}>
+      <View style={styles.container}>
+        <Image
+          testID="cat-image"
+          contentFit="cover"
+          //source={{ uri: "https://picsum.photos/343/440" }}
+          source={{ uri: image }}
+          style={styles.image}
+        />
+        <View style={styles.infoContainer}>
+          <View style={styles.titleDescriptionContainer}>
+            <Text testID="cat-name" style={styles.title}>
+              {name}
+            </Text>
+            <Text testID="cat-age" style={styles.title}>
+              {age}
+            </Text>
+          </View>
+          <Text testID="cat-origin" style={styles.description}>
+            {origin}
           </Text>
         </View>
-        <Text testID="cat-origin" style={styles.description}>
-          {origin}
-        </Text>
       </View>
     </View>
   );
@@ -37,17 +39,19 @@ export default function Card({ image, name, age, origin }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: 343,
-    height: 440,
+    width: "100%",
+    height: "100%",
     boxShadow: "0px 10px 16px 0px #BFBFC04D",
     borderRadius: 16,
     justifyContent: "flex-end",
+    alignSelf: "center",
   },
   image: {
     width: "100%",
     height: "100%",
     borderRadius: 16,
     position: "absolute",
+    backgroundColor: "#FFF",
   },
   infoContainer: {
     width: 307,
