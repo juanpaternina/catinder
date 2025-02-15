@@ -1,17 +1,11 @@
-import axios from "axios";
+import { Cat } from "@/types";
+import axios, { AxiosResponse } from "axios";
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
 const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 
-interface User {
-  id: number;
-  name: string;
-  email: string;
-}
-
 export const useCatAPI = () => {
-  // Promise<User[]>
-  const getCatList = () => {
+  const getCatList = (): Promise<AxiosResponse<Cat[]>> => {
     if (!API_URL || !API_KEY) {
       throw new Error(
         "API_URL or API_KEY is not set, please set it in your .env file."
@@ -53,10 +47,9 @@ export const useCatAPI = () => {
         image_id: catId,
         value: vote,
       });
-      console.log("response response", response.data);
       return response.data;
     } catch (error) {
-      console.log("error", error);
+      //console.log("error", error);
     }
   };
 

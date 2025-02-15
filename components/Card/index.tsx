@@ -66,13 +66,11 @@ const Card = forwardRef<CardRef, Props>(
 
     const tap = Gesture.Pan()
       .onUpdate((e) => {
-        console.log("mooving");
         if (active === index) {
           translateX.value = e.translationX;
         }
       })
       .onEnd((e) => {
-        console.log("mooving");
         if (active === index) {
           if (e.translationX > 150) {
             return runOnJS(like)();

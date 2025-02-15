@@ -7,6 +7,7 @@ describe("Card", () => {
   it("renders correctly", () => {
     render(
       <Card
+        catID="ABC!@#"
         image="https://picsum.photos/343/440"
         name="Cat Name"
         age={6}
