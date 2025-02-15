@@ -1,23 +1,5 @@
-import Colors from "@/constants/Colors";
-import { Text, View, StyleSheet } from "react-native";
+import EmptyTab from "@/components/EmptyTab";
 
 export default function TabTwoScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>03</Text>
-    </View>
-  );
+  return <EmptyTab title="03" />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    paddingTop: 200,
-    backgroundColor: Colors.default.background,
-  },
-  title: {
-    fontSize: 126,
-    color: "#BFBFC0",
-  },
-});

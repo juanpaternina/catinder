@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmptyTab renders correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#FBFAFF",
+      "flex": 1,
+      "paddingTop": 200,
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#BFBFC0",
+        "fontSize": 126,
+      }
+    }
+  >
+    Test
+  </Text>
+</View>
+`;
