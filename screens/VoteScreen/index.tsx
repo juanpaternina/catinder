@@ -3,6 +3,8 @@ import { useCatAPI } from "@/hooks/useCatAPI";
 import { useEffect } from "react";
 import Colors from "@/constants/Colors";
 import { ButtonsAction } from "@/components";
+import CardsContainer from "@/components/CardContainer";
+import Card from "@/components/Card";
 
 export default function VoteScreen() {
   const { getCatList } = useCatAPI();
@@ -20,6 +22,9 @@ export default function VoteScreen() {
 
   return (
     <View style={styles.container}>
+      <CardsContainer>
+        <Card />
+      </CardsContainer>
       <ButtonsAction />
     </View>
   );

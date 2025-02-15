@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardsContainer renders correctly 1`] = `
+<View
+  style={
+    {
+      "marginBottom": 58,
+    }
+  }
+>
+  <Text>
+    Test
+  </Text>
+</View>
+`;
